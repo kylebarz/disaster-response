@@ -28,6 +28,18 @@ from sklearn.metrics import recall_score, f1_score, make_scorer
 
 
 def load_data(database_filepath):
+    """ 
+    Load data that was prepared by the process_data.py script. 
+  
+    Parameters: 
+    database_filepath (string): Relative or Full Path to the SQLite Database.
+  
+    Returns: 
+    X: Contains all of the messages.
+    Y: Indicates 1 (True) or 0 (False) for all of the possible categories for historical messages.
+    category_names: All of the possible categories for messages.
+
+    """
     #X, Y, category_names = load_data(database_filepath)
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql('SELECT * FROM categorized_messages_tbl', engine)
@@ -45,6 +57,16 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """ 
+    Lemmatizes text passed to the function.
+  
+    Parameters: 
+    text (string): Text to Lemmatize.
+  
+    Returns: 
+    lemmatized_words: List of words contained in the text.
+
+    """
     tokens = nltk.word_tokenize(text)
     lemmatizer = nltk.WordNetLemmatizer()
     

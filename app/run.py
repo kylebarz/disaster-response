@@ -59,12 +59,11 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/index')
 def index():
     
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
+    #show count by genre
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
-    #Show  Count of Records by Classification
+    #Show Count of Records by Classification
     classification_counts = []
     for x in df_count_by_classification_t.values:
         classification_counts.append(int(x))
@@ -74,8 +73,7 @@ def index():
     #Show Count of Words
     word_count = list(df['word_count'].values)
     
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
+    # create visuals with plotly
     graphs = [
         {
             'data': [

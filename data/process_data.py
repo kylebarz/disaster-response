@@ -76,6 +76,17 @@ def clean_data(df):
     return df
         
 def save_data(df, database_filename):
+    """ 
+    Save dataframe to a SQLite database.
+  
+    Parameters: 
+    df (dataframe): Full dataframe to write to a SQL Database
+    database_filename (string): Relative or Full path to Database file location. 
+  
+    Returns: 
+    Nothing
+  
+    """
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql('categorized_messages_tbl', engine, index=False, if_exists='replace')  
 
