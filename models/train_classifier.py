@@ -92,12 +92,15 @@ def build_model():
                       ('tfidf', TfidfTransformer()),
                       ('clf', MultiOutputClassifier(RandomForestClassifier()))])
     
+    #uncomment parameters for additional tuning. I have commented these to reduce the time it takes to build a model. 
     parameters = {
         'tfidf__use_idf':[True, False]
         #,'clf__estimator__n_estimators':[10, 20]
         #,'clf__estimator__min_samples_split':[2, 4]
     }
     
+    #pipleineV2 tests using SVC Classifier. 
+    #this was not used and can be removed. 
     pipelineV2 = Pipeline([('vect', CountVectorizer(tokenizer=tokenize)),
                       ('tfidf', TfidfTransformer()),
                       ('clf', MultiOutputClassifier(SVC()))])
